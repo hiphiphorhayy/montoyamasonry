@@ -200,6 +200,7 @@ const submitFormData = () => {
         body: formData,
     })
     .then((res) => {
+        console.log('Response Status Code:', res.status);
         if (res.ok) {
             form.reset();
             formSubmissionStatus.textContent = 'Form submitted successfully!';
@@ -213,6 +214,7 @@ const submitFormData = () => {
         }
     })
     .catch((error) => {
+        console.error('Fetch Error:', error);
         formSubmissionStatus.textContent = 'An error occured, please try again.';
         formSubmissionStatus.classList.add('bg-black', 'text-white-700');
     });
