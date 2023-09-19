@@ -15,7 +15,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post('http://localhost:3000/api/submit-form', [
+app.post('/api/submit-form', [
     body('fullName').trim().isLength({ min: 2 }).escape(),
     body('subject').trim().isLength({ min: 3 }).escape(),
     body('emailAddress').trim().isEmail().normalizeEmail(),
