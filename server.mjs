@@ -1,17 +1,21 @@
-const nodemailer = require('nodemailer');
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const app = express();
-const { body, validationResult } = require('express-validator');
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import { body, validationResult } from 'express-validator';
 const port = process.env.PORT || 3000;
+const app = express();
+const corsOptions = {
+    origin: 'http://127.0.0.1:5500',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+};
 
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/api/submit-form', [
+app.post('http://localhost:3000/api/submit-form', [
     body('fullName').trim().isLength({ min: 2 }).escape(),
     body('subject').trim().isLength({ min: 3 }).escape(),
     body('emailAddress').trim().isEmail().normalizeEmail(),
@@ -27,7 +31,9 @@ app.post('/api/submit-form', [
         const { fullName, subject, emailAddress, phoneNumber, message } = req.body;
 
         const transporter = nodemailer.createTransport("SMTP",{
-            service: process.env.EMAIL_SERVICE,
+            host: "smtp-mail.outlook.com",
+            port: 587,
+            secure: false,
             auth: {
                 user: process.env.EMAIL_USERNAME,
                 pass: process.env.EMAIL_PASSWORD
@@ -36,7 +42,7 @@ app.post('/api/submit-form', [
 
         const mailOptions = {
             from: process.env.EMAIL_FROM,
-            to: 'montoyamasonry@outlook.com',
+            to: process.env.EMAIL_SENDER,
             subject: `New Contact Form Submission! ${subject}`,
             text: `Full Name: ${fullName}\nEmail: ${emailAddress}\nPhone: ${phoneNumber}\n\nMessage: ${message}`,
         };

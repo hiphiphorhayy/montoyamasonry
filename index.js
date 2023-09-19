@@ -193,9 +193,9 @@ const formValidityCheck = () => {
 
 
 const submitFormData = () => {
-    const formData = new FormData(form);
+    const formData = new URLSearchParams(new FormData(form));
 
-    fetch('/api/submit-form', {
+    fetch('http://localhost:3000/api/submit-form', {
         method: 'POST',
         body: formData,
     })
