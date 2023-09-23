@@ -6,6 +6,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
+    "mysql2": "^3.6.1",
     "tailwindcss": "^3.3.3"
   },
 #  "devDependencies": {
