@@ -192,7 +192,7 @@ const formValidityCheck = () => {
 };
 
 
-const submitFormData = () => {
+/*const submitFormData = () => {
     const formData = new URLSearchParams(new FormData(form));
 
     fetch('http://localhost:3000/api/submit-form', {
@@ -232,4 +232,4 @@ form.addEventListener('submit', (e) => {
             submitFormData();
         }, 500);
     }
-});
+});*/
