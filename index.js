@@ -192,7 +192,7 @@ const formValidityCheck = () => {
 };
 
 
-/*const submitFormData = () => {
+const submitFormData = () => {
     const formData = new URLSearchParams(new FormData(form));
 
     fetch('http://localhost:3000/api/submit-form', {
@@ -203,6 +203,16 @@ const formValidityCheck = () => {
         console.log('Response Status Code:', res.status);
         if (res.ok) {
             form.reset();
+            fullNameInput.style.backgroundColor = '';
+            fullNameInput.classList.add('bg-gray-200');
+            subjectInput.style.backgroundColor = '';
+            subjectInput.classList.add('bg-gray-200');
+            emailAddressInput.style.backgroundColor = '';
+            emailAddressInput.classList.add('bg-gray-200');
+            phoneNumberInput.style.backgroundColor = '';
+            phoneNumberInput.classList.add('bg-gray-200');
+            messageInput.style.backgroundColor = '';
+            messageInput.classList.add('bg-gray-200');
             formSubmissionStatus.textContent = 'Form submitted successfully!';
             formSubmissionStatus.classList.remove('bg-black');
             formSubmissionStatus.style.backgroundColor = 'rgb(21, 128, 61)';
@@ -232,4 +242,4 @@ form.addEventListener('submit', (e) => {
             submitFormData();
         }, 500);
     }
-});*/
+});

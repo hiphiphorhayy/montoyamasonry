@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import mysq12 from 'mysql';
+import mysql from 'mysql2';
 import { body, validationResult } from 'express-validator';
 const port = process.env.PORT || 3000;
 const app = express();
@@ -9,6 +9,7 @@ const corsOptions = {
     origin: 'http://127.0.0.1:5500',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
+dotenv.config();
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -18,7 +19,7 @@ const connection = mysql.createConnection({
     host: process.env.HOST,
     user: process.env.USER,
     password: process.env.PASSWORD,
-    database: process.env.DATABASE
+    database: process.env.DATABASE,
 });
 
 connection.connect((err) => {
@@ -45,7 +46,7 @@ app.post('/api/submit-form', validateFormSubmission, (req, res) => {
     }
 
     const { fullName, subject, emailAddress, phoneNumber, message} = req.body;
-    const query = 'INSERT INTO your_table_name (fullName, subject, emailAddress, phoneNumber, message) VALUES (?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO contact_form_submissions (fullName, subject, emailAddress, phoneNumber, message) VALUES (?, ?, ?, ?, ?)';
     const values = [fullName, subject, emailAddress, phoneNumber, message];
 
     connection.query(query, values, (err, results) => {
