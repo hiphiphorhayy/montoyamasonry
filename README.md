@@ -14,4 +14,5 @@
 
 # Postcss also installed
 # To start server: 'npm run dev'
-# Server: localhost:3000, Front end on liveserver port 5500
+# Front end on liveserver port 5500
+# MySQL Local Instance Linked On Back-end
