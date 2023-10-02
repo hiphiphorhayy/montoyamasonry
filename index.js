@@ -1,12 +1,9 @@
-import { JSDOM } from 'jsdom';
-GLOBAL.document = new JSDOM(html).window.document;
-
-const form = document.querySelector('#form');
-const fullNameInput = document.querySelector('#fullName');
-const subjectInput = document.querySelector('#subject');
-const emailAddressInput = document.querySelector('#emailAddress');
-const phoneNumberInput = document.querySelector('#phoneNumber');
-const messageInput = document.querySelector('#message');
+const form = window.document.getElementById('form');
+const fullNameInput = window.document.getElementById('fullName');
+const subjectInput = window.document.getElementById('subject');
+const emailAddressInput = window.document.getElementById('emailAddress');
+const phoneNumberInput = window.document.getElementById('phoneNumber');
+const messageInput = window.document.getElementById('message');
 
 
 let validFullName;
@@ -15,10 +12,9 @@ let validEmailAddress;
 let validPhoneNumber;
 let validMessage;
 
-const cancelButton = document.querySelector('#cancel');
-const submitButton = document.querySelector('#submit');
-const formSubmissionStatus = document.querySelector('#formSubmissionStatus');
-
+const cancelButton = window.document.getElementById('cancel');
+const submitButton = window.document.getElementById('submit');
+const formSubmissionStatus = window.document.getElementById('formSubmissionStatus');
 
 cancelButton.addEventListener('click', (e) => {
     e.preventDefault();
