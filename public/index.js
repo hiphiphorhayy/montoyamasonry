@@ -1,4 +1,4 @@
-const form = document.querySelector('#form');
+/*const form = document.querySelector('#form');
 const fullNameInput = document.querySelector('#fullName');
 const subjectInput = document.querySelector('#subject');
 const emailAddressInput = document.querySelector('#emailAddress');
@@ -241,4 +241,4 @@ form.addEventListener('submit', (e) => {
             submitFormData();
         }, 500);
     }
-});
+});*/
