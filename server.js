@@ -1,8 +1,8 @@
-/*import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import express from 'express';
 import mysql from 'mysql2';
 import { body, validationResult } from 'express-validator';
-const port = process.env.MYSQLPORT;
+const port = process.env.MYSQLPORT || 3000;
 const app = express();
 dotenv.config();
 
@@ -56,4 +56,4 @@ app.post('/api/submit-form', validateFormSubmission, (req, res) => {
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
-});*/
+});
