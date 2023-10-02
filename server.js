@@ -1,5 +1,3 @@
-console.log('Node.js application is starting...');
-
 /*import dotenv from 'dotenv';
 import express from 'express';
 import mysql from 'mysql2';
