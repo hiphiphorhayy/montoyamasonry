@@ -189,3 +189,56 @@ const formValidityCheck = () => {
         validMessage === true
     );
 };
+
+
+const submitFormData = () => {
+    const formData = new URLSearchParams(new FormData(form));
+
+    fetch('http://localhost:3000/api/submit-form', {
+        method: 'POST',
+        body: formData,
+    })
+    .then((res) => {
+        console.log('Response Status Code:', res.status);
+        if (res.ok) {
+            form.reset();
+            fullNameInput.style.backgroundColor = '';
+            fullNameInput.classList.add('bg-gray-200');
+            subjectInput.style.backgroundColor = '';
+            subjectInput.classList.add('bg-gray-200');
+            emailAddressInput.style.backgroundColor = '';
+            emailAddressInput.classList.add('bg-gray-200');
+            phoneNumberInput.style.backgroundColor = '';
+            phoneNumberInput.classList.add('bg-gray-200');
+            messageInput.style.backgroundColor = '';
+            messageInput.classList.add('bg-gray-200');
+            formSubmissionStatus.textContent = 'Form submitted successfully!';
+            formSubmissionStatus.classList.remove('bg-black');
+            formSubmissionStatus.style.backgroundColor = 'rgb(21, 128, 61)';
+        } else {
+            formSubmissionStatus.textContent = 'Form submission failed';
+            formSubmissionStatus.classList.remove('bg-black');
+            formSubmissionStatus.style.backgroundColor = '';
+            formSubmissionStatus.classList.add('bg-red-600');
+        }
+    })
+    .catch((error) => {
+        console.error('Fetch Error:', error);
+        formSubmissionStatus.textContent = 'An error occured, please try again.';
+        formSubmissionStatus.classList.add('bg-black', 'text-white-700');
+    });
+};
+
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if(formValidityCheck()) {
+        submitButton.disabled = true;
+        formSubmissionStatus.textContent = 'Submitting...';
+        formSubmissionStatus.classList.add('bg-black', 'text-white');
+
+        setTimeout(() => {
+            submitFormData();
+        }, 500);
+    }
+});
