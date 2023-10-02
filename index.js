@@ -1,9 +1,9 @@
-const form = document.querySelector('#form');
-const fullNameInput = document.querySelector('#fullName');
-const subjectInput = document.querySelector('#subject');
-const emailAddressInput = document.querySelector('#emailAddress');
-const phoneNumberInput = document.querySelector('#phoneNumber');
-const messageInput = document.querySelector('#message');
+const form = Document.querySelector('#form');
+const fullNameInput = Document.querySelector('#fullName');
+const subjectInput = Document.querySelector('#subject');
+const emailAddressInput = Document.querySelector('#emailAddress');
+const phoneNumberInput = Document.querySelector('#phoneNumber');
+const messageInput = Document.querySelector('#message');
 
 
 let validFullName;
