@@ -1,3 +1,7 @@
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+GLOBAL.document = new JSDOM(html).window.document;
+
 const form = document.querySelector('#form');
 const fullNameInput = document.querySelector('#fullName');
 const subjectInput = document.querySelector('#subject');
