@@ -1,5 +1,4 @@
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
+import { JSDOM } from 'jsdom';
 GLOBAL.document = new JSDOM(html).window.document;
 
 const form = document.querySelector('#form');
