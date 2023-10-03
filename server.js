@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mysql from 'mysql2';
 import { body, validationResult } from 'express-validator';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const app = express();
 dotenv.config();
 
