@@ -128,7 +128,7 @@ emailAddressInput.addEventListener('input', () => {
 
 const validatePhoneNumber = () => {
     const phoneNumber = phoneNumberInput.value;
-    if (!phoneNumber.match(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)) {
+    if (!phoneNumber.match(/^\d{10}$/)) {
         phoneNumberInput.classList.remove('bg-gray-200');
         phoneNumberInput.style.backgroundColor = '';
         phoneNumberInput.classList.add('bg-red-600', 'text-white');
