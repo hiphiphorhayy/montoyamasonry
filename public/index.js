@@ -194,7 +194,7 @@ const formValidityCheck = () => {
 const submitFormData = () => {
     const formData = new URLSearchParams(new FormData(form));
 
-    fetch(process.env.MYSQL_URL, {
+    fetch('https://montoyamasonry.co/api/submitform', {
         method: 'POST',
         body: formData,
     })
