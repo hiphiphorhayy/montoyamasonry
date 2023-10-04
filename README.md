@@ -13,6 +13,4 @@
     "nodemon": "^3.0.1"
 
 # Postcss also installed
-# To start server: 'npm run dev'
-# Front end on liveserver port 5500
 # MySQL Local Instance Linked On Back-end
