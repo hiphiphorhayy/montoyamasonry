@@ -54,6 +54,6 @@ app.post('/api/submit-form', validateFormSubmission, (req, res) => {
     });
 });
 
-app.listen(process.env.MYSQLPORT, () => {
-    console.log(`Server is running on port ${process.env.MYSQLPORT}`);
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server is running on port ${process.env.PORT || 3000}`);
 });
