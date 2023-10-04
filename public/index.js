@@ -140,7 +140,7 @@ const validatePhoneNumber = () => {
         phoneNumberInput.classList.add('bg-gray-200');
         validPhoneNumber = undefined;
     }
-    else if (phoneNumber.match(/^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/)) {
+    else if (phoneNumber.match(/^\d{10}$/)) {
         phoneNumberInput.classList.remove('bg-gray-200', 'bg-red-600');
         subjectInput.classList.add('text-white');
         phoneNumberInput.style.backgroundColor = 'rgb(21, 128, 61)';
