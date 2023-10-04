@@ -34,7 +34,7 @@ const validateFormSubmission = [
     body('message').trim().isLength({ min: 40 }).escape(),
 ];
 
-app.post(process.env.MYSQL_URL, validateFormSubmission, (req, res) => {
+app.post('/api/submit-form', validateFormSubmission, (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
