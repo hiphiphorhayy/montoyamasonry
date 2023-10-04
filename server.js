@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mysql from 'mysql2';
 import { body, validationResult } from 'express-validator';
-const port = process.env.PORT;
 const app = express();
 dotenv.config();
 
@@ -11,10 +10,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 const connection = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
+    database: process.env.MYSQLDATABASE,
+    host: process.env.MYSQLHOST,
+    password: process.env.MYSQLPASSWORD,
+    port: process.env.MYSQLPORT,
+    user: process.env.MYSQLUSER
 });
 
 connection.connect((err) => {
@@ -54,6 +54,6 @@ app.post('/api/submit-form', validateFormSubmission, (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(process.env.MYSQLPORT, () => {
+    console.log(`Server is running on port ${process.env.MYSQLPORT}`);
 });
