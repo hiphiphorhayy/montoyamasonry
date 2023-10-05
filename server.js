@@ -41,7 +41,7 @@ app.post('/api/submit-form', validateFormSubmission, (req, res) => {
     }
 
     const {fullName, subject, emailAddress, phoneNumber, message} = req.body;
-    const query = 'INSERT INTO contactForms (fullName, subject, emailAddress, phoneNumber, message) VALUES (?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO contact_forms (fullName, subject, emailAddress, phoneNumber, message) VALUES (?, ?, ?, ?, ?)';
     const values = [fullName, subject, emailAddress, phoneNumber, message];
 
     connection.query(query, values, (err, results) => {
