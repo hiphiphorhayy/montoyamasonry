@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import express from 'express';
-import mysql from 'mysql2';
+import mysql from 'mysql2/promise';
 import { body, validationResult } from 'express-validator';
 const app = express();
 dotenv.config();
@@ -9,21 +9,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-const connection = mysql.createConnection({
+const pool = mysql.createPool({
     database: process.env.MYSQLDATABASE,
     host: process.env.MYSQLHOST,
     password: process.env.MYSQLPASSWORD,
     port: process.env.MYSQLPORT,
-    user: process.env.MYSQLUSER
-});
-
-connection.connect((err) => {
-    if (err) {
-        console.error('Error connecting to mySQL:', err);
-        return;
-    } else {
-        console.log('Connected to mySQL database');
-    }
+    user: process.env.MYSQLUSER,
+    waitForConnections: true,
+    connectionLimit: 10,
 });
 
 const validateFormSubmission = [
@@ -34,7 +27,7 @@ const validateFormSubmission = [
     body('message').trim().isLength({ min: 40 }).escape(),
 ];
 
-app.post('/api/submit-form', validateFormSubmission, (req, res) => {
+app.post('/api/submit-form', validateFormSubmission, async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -44,14 +37,15 @@ app.post('/api/submit-form', validateFormSubmission, (req, res) => {
     const query = 'INSERT INTO contact_forms (fullName, subject, emailAddress, phoneNumber, message) VALUES (?, ?, ?, ?, ?)';
     const values = [fullName, subject, emailAddress, phoneNumber, message];
 
-    connection.query(query, values, (err, results) => {
-        if (err) {
-            console.error('Error inserting data into the database:', err);
-            return res.status(500).json({ error: 'Internal server error' });
-        } else {
-            res.status(200).json({ message: 'Form submitted successfully' });
-        }
-    });
+    try {
+        const connection = await pool.getConnection();
+        await connection.query(query, values);
+        connection.release();
+        res.status(200).json({ message: 'Form submitted successfully' });
+    } catch (err) {
+        console.error('Error inserting data into the database:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
 app.listen(process.env.PORT || 3000, () => {
