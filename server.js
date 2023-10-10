@@ -34,8 +34,8 @@ app.post('/api/submit-form', validateFormSubmission, async (req, res) => {
     }
 
     const {fullName, subject, emailAddress, phoneNumber, message} = req.body;
-    const query = 'INSERT INTO contact_forms (fullName, subject, emailAddress, phoneNumber, message) VALUES (?, ?, ?, ?, ?)';
-    const values = [fullName, subject, emailAddress, phoneNumber, message];
+    const query = 'INSERT INTO contact_forms (fullName, subject, emailAddress, phoneNumber, message) VALUES (?, ?, ?, ?, ?, NOW())';
+    const values = [fullName, subject, emailAddress, phoneNumber, message, new Date()];
 
     try {
         const connection = await pool.getConnection();
