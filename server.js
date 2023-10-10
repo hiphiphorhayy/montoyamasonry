@@ -4,6 +4,7 @@ import mysql from 'mysql2/promise';
 import { body, validationResult } from 'express-validator';
 const app = express();
 dotenv.config();
+let timeStamp;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -33,9 +34,9 @@ app.post('/api/submit-form', validateFormSubmission, async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const {fullName, subject, emailAddress, phoneNumber, message} = req.body;
-    const query = 'INSERT INTO contact_forms (fullName, subject, emailAddress, phoneNumber, message) VALUES (?, ?, ?, ?, ?, NOW())';
-    const values = [fullName, subject, emailAddress, phoneNumber, message, new Date()];
+    const {fullName, subject, emailAddress, phoneNumber, message, timeStamp} = req.body;
+    const query = 'INSERT INTO contact_forms (fullName, subject, emailAddress, phoneNumber, message, timeStamp) VALUES (?, ?, ?, ?, ?, NOW())';
+    const values = [fullName, subject, emailAddress, phoneNumber, message, timeStamp];
 
     try {
         const connection = await pool.getConnection();
