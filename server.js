@@ -35,7 +35,7 @@ app.post('/api/submit-form', validateFormSubmission, async (req, res) => {
     }
 
     const {fullName, subject, emailAddress, phoneNumber, message, timeStamp} = req.body;
-    const query = 'INSERT INTO contact_forms (fullName, subject, emailAddress, phoneNumber, message, timeStamp) VALUES (?, ?, ?, ?, ?, NOW())';
+    const query = 'INSERT INTO contact_forms (fullName, subject, emailAddress, phoneNumber, message, timeStamp) VALUES (?, ?, ?, ?, ?, CONVERT_TZ(NOW(), \'UTC\', \'US/Eastern\'))';
     const values = [fullName, subject, emailAddress, phoneNumber, message, timeStamp];
 
     try {
