@@ -8,7 +8,6 @@ module.exports = {
       }
     },
     fontFamily: {
-      monserrat: ['Monserrat'],
       'body': [
     'Inter', 
     'ui-sans-serif', 
