@@ -797,6 +797,10 @@ select {
   margin-bottom: 1.5rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .mb-12 {
   margin-bottom: 3rem;
 }
@@ -861,12 +865,12 @@ select {
   height: 2.5rem;
 }
 
-.h-20 {
-  height: 5rem;
+.h-12 {
+  height: 3rem;
 }
 
-.h-32 {
-  height: 8rem;
+.h-20 {
+  height: 5rem;
 }
 
 .h-40 {
@@ -1202,8 +1206,8 @@ select {
   text-align: center;
 }
 
-.font-body {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, system-ui, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+.font-monserrat {
+  font-family: Monserrat;
 }
 
 .text-3xl {
@@ -1351,11 +1355,23 @@ select {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
   }
+
+  .sm\:font-medium {
+    font-weight: 500;
+  }
 }
 
 @media (min-width: 768px) {
   .md\:-m-2 {
     margin: -0.5rem;
+  }
+
+  .md\:h-16 {
+    height: 4rem;
+  }
+
+  .md\:w-32 {
+    width: 8rem;
   }
 
   .md\:w-6\/12 {
@@ -1434,6 +1450,10 @@ select {
 
   .lg\:w-12 {
     width: 3rem;
+  }
+
+  .lg\:w-32 {
+    width: 8rem;
   }
 
   .lg\:w-4\/12 {
