@@ -13,4 +13,3 @@
     "nodemon": "^3.0.1"
 
 # Postcss also installed
-# MySQL Local Instance Linked On Back-end
